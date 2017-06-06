@@ -6,7 +6,7 @@ public class Main {
 	// write your code here
 
         String classTestName = "TestingGrounds";
-        String[] problem = {"hi","bye"};
+        String[] problem = {"BOUNDRIES","ERROR"};
 
         MaximusIudex.censorCheck(classTestName, problem);
     }

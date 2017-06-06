@@ -45,7 +45,7 @@ public class TestingGrounds {
         @Censor(reviewer= "Name112411111111232131211111111", reviewDate = "Today",
                 reviewedProblems = {Problems.BOUNDRIES, Problems.ERROR},
                 fixed = false, fixedChanges = "none")
-        public int reviewedMethod(int testInt)
+        public int insideReviewedMethod(int testInt)
         {
             return testInt;
         }
