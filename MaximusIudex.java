@@ -58,8 +58,8 @@ public class MaximusIudex {
         for(Censor review : annot.value()){
             for(Problems problem: review.reviewedProblems()){
                 for(String name : problems) {
-                    if (problem.toString() == name) {
-                        System.out.println(reviews.getName()+" has a " + name + " problem.");
+                    if (problem.toString().equalsIgnoreCase(name)) {
+                        System.out.println(reviews.getName()+" has a " + problem.toString() + " problem.");
                     }
                 }
             }
