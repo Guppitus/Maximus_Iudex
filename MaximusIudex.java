@@ -8,15 +8,14 @@ import java.lang.reflect.Method;
  * Checks given class for annotated reviewed methods that have been marked with specified problems.
  * Created by Seth Lunn on 6/6/2017.
  */
-public class MaximusIudex {
+class MaximusIudex {
 
     /**
      * Checks class for reviewed methods or nested classes that have specified problems.
      * @param className The name of the class being checked
      * @param problems list of specified problems
      */
-
-    public static void censorCheck ( @NotNull String className, @NotNull String[] problems )
+    static void censorCheck(@NotNull String className, @NotNull String[] problems)
     {
         try {
             //TODO improve pkg handling
@@ -37,7 +36,7 @@ public class MaximusIudex {
      * @param reflectedClass the class containing methods to be checked for annotation
      * @param problems list of problems being checked for.
      */
-    public static void checkMethods (@NotNull Class reflectedClass, @NotNull String[] problems)
+    private static void checkMethods(@NotNull Class reflectedClass, @NotNull String[] problems)
     {
         Method[] classMethods = reflectedClass.getMethods();
         for (Method method : classMethods) {
@@ -55,7 +54,7 @@ public class MaximusIudex {
      * @param reviews the method being checked
      * @param problems problems being checked
      */
-    public static void checkProblems (@NotNull Method reviews, @NotNull String[] problems)
+    private static void checkProblems(@NotNull Method reviews, @NotNull String[] problems)
     {
         Censor annot = reviews.getAnnotation(Censor.class);
             for(Problems problem: annot.reviewedProblems()){
@@ -72,7 +71,7 @@ public class MaximusIudex {
      * @param reviews the method being checked
      * @param problems problems being checked
      */
-    public static void checkProblemsRepeat (@NotNull Method reviews, @NotNull String[] problems)
+    private static void checkProblemsRepeat(@NotNull Method reviews, @NotNull String[] problems)
     {
         Censors annot = reviews.getAnnotation(Censors.class);
         for(Censor review : annot.value()){
@@ -91,7 +90,7 @@ public class MaximusIudex {
      * @param reflectedClass the parent class
      * @param problems the list of problems being checked for.
      */
-    public static void checkNestedClasses (@NotNull Class reflectedClass, @NotNull String[] problems)
+    private static void checkNestedClasses(@NotNull Class reflectedClass, @NotNull String[] problems)
     {
         Class[] classClasses = reflectedClass.getDeclaredClasses();
         for (Class classy : classClasses) {
