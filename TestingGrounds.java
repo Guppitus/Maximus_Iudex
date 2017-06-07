@@ -12,6 +12,9 @@ public class TestingGrounds {
     private int testField;
 
 
+    @Censor(reviewer= "Name112411111111232131211111111", reviewDate = "Today",
+            reviewedProblems = {Problems.BOUNDRIES, Problems.ERROR},
+            fixed = false, fixedChanges = "none")
     public int notReviewedMethod(int testInt)
     {
         return testInt;
@@ -35,6 +38,9 @@ public class TestingGrounds {
                 fixed = false, fixedChanges = "none")
         private int insideTestField;
 
+        @Censor(reviewer= "Name112411111111232131211111111", reviewDate = "Today",
+                reviewedProblems = {Problems.BOUNDRIES, Problems.ERROR},
+                fixed = false, fixedChanges = "none")
         public int notReviewedInsidemethod(int testInt){
             return testInt;
         }

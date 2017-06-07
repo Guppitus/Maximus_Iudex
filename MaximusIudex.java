@@ -41,10 +41,30 @@ public class MaximusIudex {
     {
         Method[] classMethods = reflectedClass.getMethods();
         for (Method method : classMethods) {
-            if (method.isAnnotationPresent(Censors.class)) {
+            if (method.isAnnotationPresent(Censor.class)){
                 checkProblems(method, problems);
             }
+            if (method.isAnnotationPresent(Censors.class)) {
+                checkProblemsRepeat(method, problems);
+            }
+
         }
+    }
+    /**
+     * checks the annotation for list of problems. If the method is marked with matching problems, a string is printed.
+     * @param reviews the method being checked
+     * @param problems problems being checked
+     */
+    public static void checkProblems (@NotNull Method reviews, @NotNull String[] problems)
+    {
+        Censor annot = reviews.getAnnotation(Censor.class);
+            for(Problems problem: annot.reviewedProblems()){
+                for(String name : problems) {
+                    if (problem.toString().equalsIgnoreCase(name)) {
+                        System.out.println(reviews.getName()+" has a " + problem.toString() + " problem.");
+                    }
+                }
+            }
     }
 
     /**
@@ -52,7 +72,7 @@ public class MaximusIudex {
      * @param reviews the method being checked
      * @param problems problems being checked
      */
-    public static void checkProblems (@NotNull Method reviews, @NotNull String[] problems)
+    public static void checkProblemsRepeat (@NotNull Method reviews, @NotNull String[] problems)
     {
         Censors annot = reviews.getAnnotation(Censors.class);
         for(Censor review : annot.value()){
@@ -64,7 +84,6 @@ public class MaximusIudex {
                 }
             }
         }
-
     }
 
     /**
